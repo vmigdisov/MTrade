@@ -11,19 +11,17 @@ final class MTradeTests: XCTestCase {
     
     func testExample() throws {
         let expectation = expectation(description: "")
-        let dataProvider = Entity.category(nil).dataProvider!
+        let dataProvider = Entity.categoryDataProvider!
         XCTAssertEqual(dataProvider.url.absoluteString, .wpURL + "/wp-json/wc/v3/mtrade_categories?page=1")
-        dataProvider.get { (entities: [Entity]?) in
-            XCTAssertEqual(entities?.count ?? 0, 35)
-            guard let entities: [Entity] = entities else { print("Error getting categories"); return }
-            for entity in entities {
-                if case .category(let category) = entity {
-                    print("name: \(category?.name ?? "")")
-                }
+        dataProvider.get {
+            guard let categories = $0 else { return }
+            XCTAssertEqual($0?.count ?? 0, 35)
+            for category in categories {
+                print("name: \(category.name ?? "")")
             }
             expectation.fulfill()
         }
-        waitForExpectations(timeout: 5.0) { (error) in
+        waitForExpectations(timeout: 30.0) { (error) in
             if error != nil {
                 XCTFail(error?.localizedDescription ?? "Undefined network error")
             }

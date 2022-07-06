@@ -18,7 +18,7 @@ struct PersistentController {
     init(inMemory: Bool = false) {
         
         let bundle = Bundle.module
-        let modelURL = bundle.url(forResource: "mtrade", withExtension: ".mom")!
+        let modelURL = bundle.url(forResource: "mtrade", withExtension: ".momd")!
         let model = NSManagedObjectModel(contentsOf: modelURL)!
         container = NSPersistentContainer(name: "mtrade", managedObjectModel: model)
         

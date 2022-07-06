@@ -11,11 +11,11 @@
         <attribute name="quantity" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
     <entity name="Category" representedClassName="Category" syncable="YES" codeGenerationType="class">
-        <attribute name="descr" attributeType="String" defaultValueString=""/>
+        <attribute name="descr" optional="YES" attributeType="String"/>
         <attribute name="display" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="id" attributeType="String" defaultValueString=""/>
+        <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="loadingPicture" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="name" attributeType="String" defaultValueString="" spotlightIndexingEnabled="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="position" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="children_" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Category" inverseName="parent" inverseEntity="Category"/>
         <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="children_" inverseEntity="Category"/>

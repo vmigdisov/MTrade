@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import CoreData
 
-public class WPCategoryProvider: DataProvider, DataParser {
+public class WPCategoryProvider: CategoryDataProvider, DataParser {
     
     public var url: URL
     
@@ -15,9 +16,16 @@ public class WPCategoryProvider: DataProvider, DataParser {
         self.url = URL(string: url + "/wp-json/wc/v3/mtrade_categories?page=1")!
     }
     
-    public func get(completion: @escaping ([Entity]?) -> Void) {
+    public func get(completion: @escaping ([Category]?) -> Void) {
         return WPDataProvider().get(url: url, parser: self) { (entities: [Entity]?) -> Void in
-            completion(entities)
+            let categories: [Category]? = entities?.compactMap {
+                if case .category(let category) = $0 {
+                    return category
+                } else {
+                    return nil
+                }
+            }
+            completion(categories)
         }
     }
     

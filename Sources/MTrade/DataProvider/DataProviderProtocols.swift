@@ -7,9 +7,9 @@
 
 import Foundation
 
-public protocol DataProvider {
+public protocol CategoryDataProvider {
     var url: URL { get }
-    func get(completion: @escaping (_ data: [Entity]?) -> Void)
+    func get(completion: @escaping (_ data: [Category]?) -> Void)
 }
 
 public protocol DataParser {

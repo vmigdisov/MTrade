@@ -9,16 +9,11 @@ import Foundation
 
 public enum Entity {
     
-    case category(Category?), product(Product?), picture(Picture?), review(Review?)
+    case category(Category), product(Product), picture(Picture), review(Review)
     
-    public var dataProvider: DataProvider? {
-
+    public static var categoryDataProvider: CategoryDataProvider? {
         switch MTrade.resource {
-        case .wp(let url):
-            switch self {
-            case .category: return WPCategoryProvider(with: url)
-            default: return nil
-            }
+        case .wp(let url): return WPCategoryProvider(with: url)
         case .none:
             MTrade.configurationError()
             return nil
